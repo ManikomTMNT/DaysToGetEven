@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8v0ijq2346iv"]
 
-[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scene/iamhit.gd" id="1_65w2a"]
-[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scene/attackmeele.gd" id="2_kmx34"]
+[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scripts/iamhit.gd" id="1_65w2a"]
+[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/attackmeele.gd" id="2_kmx34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
 size = Vector2(41, 45)
@@ -27,8 +27,6 @@ shape = SubResource("RectangleShape2D_x2ouf")
 
 [node name="Area2D2" type="Area2D" parent="." unique_id=988670838]
 script = ExtResource("2_kmx34")
-ismele = null
-atkrate = 17
 
 [node name="F" type="CollisionShape2D" parent="Area2D2" unique_id=395228510]
 position = Vector2(55, 1)
@@ -37,8 +35,6 @@ shape = SubResource("RectangleShape2D_x2ouf")
 [node name="Area2D3" type="Area2D" parent="." unique_id=1165676366]
 position = Vector2(-100, 0)
 script = ExtResource("2_kmx34")
-ismele = null
-atkrate = 18
 
 [node name="F2" type="CollisionShape2D" parent="Area2D3" unique_id=162680758]
 position = Vector2(55, 1)

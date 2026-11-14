@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bi52s623cn10q"]
 
-[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scene/iamhit.gd" id="1_5m5o1"]
-[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scene/attackmeele.gd" id="2_beljo"]
+[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scripts/iamhit.gd" id="1_5m5o1"]
+[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/attackmeele.gd" id="2_beljo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
 size = Vector2(41, 45)
