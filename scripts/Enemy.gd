@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 
+
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const ENEMSPD = 100
@@ -8,9 +9,14 @@ const ENEMSPD = 100
 var hp = 100;
 var gothit = false;
 @export var isjmp = false;
+func _ready() -> void:
+	$AnimatedSprite2D.play("default");
 
 func ow():
 	gothit = true;
+
+func atkresponse():
+	$AnimatedSprite2D.play("slash");
 
 func _physics_process(delta: float) -> void:
 	var dir = 0

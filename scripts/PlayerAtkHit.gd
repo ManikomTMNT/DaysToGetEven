@@ -4,9 +4,6 @@ signal Atk
 
 var is_atking = false;
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$AtkIndicator.visible = false;
 
 func check_coll(body: Node2D) -> void:
 	if is_atking && body.is_in_group("Enemy"):
@@ -16,7 +13,8 @@ func check_coll(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("atk"):
 		is_atking = true;
-		$AtkIndicator.visible = true;
+		get_parent().atk();
+		#$AtkIndicator.visible = true;
 		$Timer.wait_time = 0.2;
 		$Timer.start();
 	
@@ -26,5 +24,5 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	$AtkIndicator.visible = false;
+	#$AtkIndicator.visible = false;
 	is_atking = false;

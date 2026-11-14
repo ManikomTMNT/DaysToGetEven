@@ -17,6 +17,7 @@ func ow():
 func _ready() -> void:
 	$ShockSprite.visible = false;
 	$AtkArea.can_dmg = false;
+	$AnimatedSprite2D.play("default");
 
 func _physics_process(delta: float) -> void:
 	var dir = 0
@@ -51,11 +52,11 @@ func _physics_process(delta: float) -> void:
 	
 
 func _on_shock_timer_timeout() -> void:
-	$ShockSprite.visible = true;
 	$AtkArea.can_dmg = true;
 	$ShockVisTimer.start()
+	$AnimatedSprite2D.play("shock");
 
 
 func _on_shock_vis_timer_timeout() -> void:
-	$ShockSprite.visible = false;
 	$AtkArea.can_dmg = false;
+	$AnimatedSprite2D.play("default");
