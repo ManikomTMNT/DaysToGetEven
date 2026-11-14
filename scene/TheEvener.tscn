@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://b8vvncj6jj2kt"]
+
+[ext_resource type="Script" uid="uid://djprghsij3dgn" path="res://scripts/TheEvener.gd" id="1_08ta4"]
+[ext_resource type="Texture2D" uid="uid://runrt77eeccn" path="res://sprites/Enemies-Sheet.png" id="2_08ta4"]
+[ext_resource type="Texture2D" uid="uid://cixlpk5rn4h5j" path="res://sprites/Evener-Sheet.png" id="2_xd2e7"]
+[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/EnemyAtkHit.gd" id="3_xd2e7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frcpm"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnu3l"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lc2r0"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnhvr"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl2j7"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n8ju"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phbf6"]
+atlas = ExtResource("2_xd2e7")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtg0f"]
+atlas = ExtResource("2_08ta4")
+region = Rect2(1125, 0, 125, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7alw"]
+atlas = ExtResource("2_08ta4")
+region = Rect2(1250, 0, 125, 125)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qdfsg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frcpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnu3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lc2r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnhvr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl2j7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n8ju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phbf6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtg0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7alw")
+}],
+"loop": 1,
+"name": &"shock",
+"speed": 9.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
+size = Vector2(59, 106)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bccfb"]
+radius = 15.757814
+
+[node name="The Evener" type="CharacterBody2D" unique_id=1787358943 groups=["Enemy"]]
+script = ExtResource("1_08ta4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1843714916]
+position = Vector2(2, -12)
+scale = Vector2(1.09375, 1.09375)
+sprite_frames = SubResource("SpriteFrames_qdfsg")
+frame = 1
+frame_progress = 0.31069136
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
+position = Vector2(-6.5, -15)
+shape = SubResource("RectangleShape2D_x2ouf")
+
+[node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
+position = Vector2(3.8146973e-06, -1.1920929e-07)
+scale = Vector2(3.998626, 3.636487)
+script = ExtResource("3_xd2e7")
+atkrate = 17
+sort = "shock"
+
+[node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
+position = Vector2(-0.5001717, -3.0248983)
+scale = Vector2(0.8851088, 0.9999999)
+shape = SubResource("CircleShape2D_bccfb")

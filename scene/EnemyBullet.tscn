@@ -9,10 +9,18 @@ size = Vector2(4, 4)
 [node name="EnemyBullet" type="Area2D" unique_id=201678228]
 script = ExtResource("1_3gxro")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=300474611]
-scale = Vector2(5.0459733, 5.0459733)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=742767358]
+scale = Vector2(5.796608, 5.796608)
 shape = SubResource("RectangleShape2D_qdfsg")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1923291146]
 scale = Vector2(0.14336218, 0.14336218)
 texture = ExtResource("1_r5o57")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=513114139]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=300474611]
+scale = Vector2(5.0459733, 5.0459733)
+shape = SubResource("RectangleShape2D_qdfsg")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

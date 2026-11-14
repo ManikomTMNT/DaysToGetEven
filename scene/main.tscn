@@ -4,8 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://byjybywmvd8xd" path="res://scene/player.tscn" id="1_itxqv"]
 [ext_resource type="PackedScene" uid="uid://upsvndihhqsd" path="res://scene/Fire Enemy.tscn" id="3_wp4xf"]
 [ext_resource type="Texture2D" uid="uid://c5t7dk4xudn7t" path="res://sprites/platform.png" id="4_0ha60"]
-[ext_resource type="PackedScene" uid="uid://d2vn6ji64nbwe" path="res://scene/Shock Enemy.tscn" id="4_brvut"]
-[ext_resource type="PackedScene" uid="uid://bi52s623cn10q" path="res://scene/Sword Enemy.tscn" id="5_0ha60"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0l8b"]
 size = Vector2(2402, 278)
@@ -37,11 +35,5 @@ shape = SubResource("RectangleShape2D_v0l8b")
 [node name="Player" parent="." unique_id=929837633 instance=ExtResource("1_itxqv")]
 position = Vector2(-720, 441)
 
-[node name="Shock Enemy" parent="." unique_id=1912082123 instance=ExtResource("4_brvut")]
-position = Vector2(-1004, 423)
-
-[node name="Sworder" parent="." unique_id=1787358943 instance=ExtResource("5_0ha60")]
-position = Vector2(-147, 409)
-
-[node name="Fire Enemy" parent="." unique_id=1163022338 instance=ExtResource("3_wp4xf")]
-position = Vector2(-1075, 160)
+[node name="Fire Enemy" parent="." unique_id=1787358943 instance=ExtResource("3_wp4xf")]
+position = Vector2(-961, 401)

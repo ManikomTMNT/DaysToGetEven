@@ -15,11 +15,10 @@ var hp = 100
 var ghit = false
 var dhit = 0
 var tired = false
-
 var dash_direction = Vector2.ZERO
 var is_dashing = false
 var can_dash = true
-
+var exploding = false 
 
 func ow(di, sort):
 	if !tired:
@@ -164,11 +163,25 @@ func _on_dizzy_timer_timeout() -> void:
 	if tired:
 		if enem_typeo == "shock":
 			electric = true;
-		elif enem.typeo == ""
+		if enem_typeo == "firebull":
+			explode();
 
 		tired = false
 		anim.play("idle")
 
+func explode():
+	exploding = true;
+	anim.play("explode")
+
+	await anim.animation_finished
+
+	for enemy in $ExplosionArea.get_overlapping_bodies():
+		if enemy.is_in_group("enemy"):
+			enemy.ow()
+
+	attacking = false
+	exploding = false;
+	anim.play("idle")
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if anim.animation == "attack":
