@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://cq73yeuchj7wj"]
 
 [ext_resource type="PackedScene" uid="uid://byjybywmvd8xd" path="res://scene/player.tscn" id="1_itxqv"]
-[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scene/issahisdumb.gd" id="2_v0l8b"]
+[ext_resource type="PackedScene" uid="uid://8v0ijq2346iv" path="res://scene/Punchenem.tscn" id="2_v0l8b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0l8b"]
 size = Vector2(1199, 278)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
-size = Vector2(41, 45)
-
 [node name="Scene1" type="Node2D" unique_id=1865861714]
 
-[node name="Player" parent="." unique_id=1283556688 instance=ExtResource("1_itxqv")]
+[node name="Player" parent="." unique_id=929837633 instance=ExtResource("1_itxqv")]
 position = Vector2(560, 289)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1254291359]
@@ -31,21 +28,5 @@ offset_right = 605.0
 offset_bottom = 141.0
 color = Color(0.62711686, 0.99999994, 0.31844836, 1)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1252605401 groups=["Enemy"]]
-script = ExtResource("2_v0l8b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=552197651]
-position = Vector2(4.5, 0.5)
-shape = SubResource("RectangleShape2D_x2ouf")
-
-[node name="ColorRect" type="ColorRect" parent="CharacterBody2D" unique_id=1056575294]
-offset_left = -18.0
-offset_top = -19.0
-offset_right = 22.0
-offset_bottom = 21.0
-
-[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=1618081136]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=1881208856]
-position = Vector2(4.5, 0.5)
-shape = SubResource("RectangleShape2D_x2ouf")
+[node name="Puncher" parent="." unique_id=1787358943 instance=ExtResource("2_v0l8b")]
+position = Vector2(90, 98)

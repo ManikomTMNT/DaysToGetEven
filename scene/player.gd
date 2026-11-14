@@ -6,8 +6,19 @@ const SPEED = 15.0
 const JUMP_VELOCITY = -400.0
 const MAXSPD = 250
 
+var hp = 100
+var ghit = false 
+var dhit = 0
+
+func ow(di):
+	ghit = true
+	hp = hp - 30
+	dhit = di
 
 func _physics_process(delta: float) -> void:
+	if hp < 1:
+		queue_free()
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -24,5 +35,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x += direction*SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if ghit: 
+		ghit = false 
+		velocity.x = dhit*600	
 	
 	move_and_slide()
