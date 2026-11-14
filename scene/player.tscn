@@ -12,10 +12,6 @@ size = Vector2(67, 75)
 
 [node name="Player" type="CharacterBody2D" unique_id=1283556688 groups=["Player"]]
 script = ExtResource("1_hjaqi")
-left_action = null
-right_action = null
-up_action = null
-jump_action = null
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=472648143]
 scale = Vector2(0.67901754, 0.67901754)
@@ -41,5 +37,8 @@ texture = ExtResource("2_fvtld")
 [node name="Timer" type="Timer" parent="AtkCollisionBox" unique_id=173119670]
 one_shot = true
 autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=476533839]
+position_smoothing_enabled = true
 
 [connection signal="timeout" from="AtkCollisionBox/Timer" to="AtkCollisionBox" method="_on_timer_timeout"]
