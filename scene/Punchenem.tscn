@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8v0ijq2346iv"]
 
-[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scripts/iamhit.gd" id="1_65w2a"]
-[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/attackmeele.gd" id="2_kmx34"]
+[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scripts/Enemy.gd" id="1_65w2a"]
+[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/EnemyAtkHit.gd" id="2_kmx34"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
 size = Vector2(41, 45)

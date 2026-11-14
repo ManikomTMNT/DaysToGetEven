@@ -41,4 +41,9 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=476533839]
 position_smoothing_enabled = true
 
+[node name="DashTimer" type="Timer" parent="." unique_id=203384387]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="timeout" from="AtkCollisionBox/Timer" to="AtkCollisionBox" method="_on_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

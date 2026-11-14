@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://37vv1fbt7v3r"]
+
+[ext_resource type="Script" uid="uid://28wihac63wc" path="res://scripts/Bullet.gd" id="1_3gxro"]
+[ext_resource type="Texture2D" uid="uid://d35ceffx4g8le" path="res://icon.svg" id="1_r5o57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qdfsg"]
+size = Vector2(4, 4)
+
+[node name="EnemyBullet" type="Area2D" unique_id=201678228]
+script = ExtResource("1_3gxro")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=300474611]
+scale = Vector2(5.0459733, 5.0459733)
+shape = SubResource("RectangleShape2D_qdfsg")
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=1923291146]
+scale = Vector2(0.14336218, 0.14336218)
+texture = ExtResource("1_r5o57")

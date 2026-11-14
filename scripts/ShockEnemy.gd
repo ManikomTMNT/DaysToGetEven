@@ -9,12 +9,18 @@ var hp = 100;
 var gothit = false;
 @export var isjmp = false;
 
+var t = 200;
+
 func ow():
 	gothit = true;
 
+func _ready() -> void:
+	$ShockSprite.visible = false;
+	$AtkArea.can_dmg = false;
+
 func _physics_process(delta: float) -> void:
 	var dir = 0
-	# Add the gravity.
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
@@ -26,7 +32,12 @@ func _physics_process(delta: float) -> void:
 	if player:
 		dir = position.direction_to(player.global_position)
 		velocity.x = dir.x * ENEMSPD
-		
+	
+	if velocity.x > 0:
+		$AtkArea.position.x = 58;
+	elif velocity.x < 0:
+		$AtkArea.position.x = -58;
+	
 	if gothit:
 		hp -= 10
 		gothit = false
@@ -38,3 +49,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+
+func _on_shock_timer_timeout() -> void:
+	$ShockSprite.visible = true;
+	$AtkArea.can_dmg = true;
+	$ShockVisTimer.start()
+
+
+func _on_shock_vis_timer_timeout() -> void:
+	$ShockSprite.visible = false;
+	$AtkArea.can_dmg = false;

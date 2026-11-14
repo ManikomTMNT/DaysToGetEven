@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://upsvndihhqsd"]
+
+[ext_resource type="Script" uid="uid://y3cq2llwa1lr" path="res://scripts/FireEnemy.gd" id="1_4bmqe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
+size = Vector2(43.5, 45.5)
+
+[node name="Fire Enemy" type="CharacterBody2D" unique_id=1787358943 groups=["Enemy"]]
+script = ExtResource("1_4bmqe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
+shape = SubResource("RectangleShape2D_x2ouf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1762632485]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.5729091, 0.8018054, 0.17116767, 1)
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1335450118]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

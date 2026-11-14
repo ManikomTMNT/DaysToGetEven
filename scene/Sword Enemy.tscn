@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bi52s623cn10q"]
+
+[ext_resource type="Script" uid="uid://j4b0s3b6dyi4" path="res://scripts/Enemy.gd" id="1_5m5o1"]
+[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/EnemyAtkHit.gd" id="2_beljo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
+size = Vector2(43.5, 45.5)
+
+[node name="Sworder" type="CharacterBody2D" unique_id=1787358943 groups=["Enemy"]]
+script = ExtResource("1_5m5o1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
+shape = SubResource("RectangleShape2D_x2ouf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1762632485]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 0.4745098, 1, 1)
+
+[node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
+position = Vector2(58, -2)
+script = ExtResource("2_beljo")
+atkrate = 17
+
+[node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
+shape = SubResource("RectangleShape2D_x2ouf")

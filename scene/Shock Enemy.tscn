@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d2vn6ji64nbwe"]
+
+[ext_resource type="Script" uid="uid://c7x7x8xm5vbk0" path="res://scripts/ShockEnemy.gd" id="1_y4vu4"]
+[ext_resource type="Texture2D" uid="uid://d35ceffx4g8le" path="res://icon.svg" id="2_jevan"]
+[ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/EnemyAtkHit.gd" id="2_y4vu4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
+size = Vector2(43.5, 45.5)
+
+[node name="Shock Enemy" type="CharacterBody2D" unique_id=1787358943 groups=["Enemy"]]
+script = ExtResource("1_y4vu4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
+shape = SubResource("RectangleShape2D_x2ouf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1762632485]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 0.4745098, 1, 1)
+
+[node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
+position = Vector2(3.8146973e-06, -1.1920929e-07)
+scale = Vector2(3.998626, 3.636487)
+script = ExtResource("2_y4vu4")
+atkrate = 17
+
+[node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
+shape = SubResource("RectangleShape2D_x2ouf")
+
+[node name="ShockTimer" type="Timer" parent="." unique_id=823260845]
+wait_time = 2.0
+autostart = true
+
+[node name="ShockVisTimer" type="Timer" parent="." unique_id=1057038149]
+wait_time = 0.5
+
+[node name="ShockSprite" type="Sprite2D" parent="." unique_id=558504162]
+position = Vector2(2.2737368e-13, -1.9999998)
+scale = Vector2(1.3424084, 1.2593709)
+texture = ExtResource("2_jevan")
+
+[connection signal="timeout" from="ShockTimer" to="." method="_on_shock_timer_timeout"]
+[connection signal="timeout" from="ShockVisTimer" to="." method="_on_shock_vis_timer_timeout"]
