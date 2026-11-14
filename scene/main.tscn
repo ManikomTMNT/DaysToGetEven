@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://byjybywmvd8xd" path="res://scene/player.tscn" id="1_itxqv"]
 [ext_resource type="PackedScene" uid="uid://8v0ijq2346iv" path="res://scene/Punchenem.tscn" id="2_v0l8b"]
+[ext_resource type="PackedScene" uid="uid://bi52s623cn10q" path="res://scene/Swordenem.tscn" id="3_wp4xf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0l8b"]
 size = Vector2(1199, 278)
@@ -30,3 +31,7 @@ color = Color(0.62711686, 0.99999994, 0.31844836, 1)
 
 [node name="Puncher" parent="." unique_id=1787358943 instance=ExtResource("2_v0l8b")]
 position = Vector2(90, 98)
+
+[node name="Sworder" parent="." unique_id=2025182433 instance=ExtResource("3_wp4xf")]
+position = Vector2(300, 214)
+isjmp = false
