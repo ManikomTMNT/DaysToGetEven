@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://d4jcbnp5tx5vg"]
 
 [ext_resource type="Script" uid="uid://cgjr5vu0c6m75" path="res://scripts/StartScreen.gd" id="1_yh430"]
+[ext_resource type="Texture2D" uid="uid://b0t78gwr150nj" path="res://sprites/ooo.png" id="2_dtrtw"]
+[ext_resource type="AudioStream" uid="uid://bqeokl318ndag" path="res://music/Title Screener.wav" id="3_ypw2f"]
+[ext_resource type="PackedScene" uid="uid://crixx7rt7y8wy" path="res://scene/Fade.tscn" id="4_qdqra"]
 
 [node name="StartScreen" type="Control" unique_id=332482430]
 layout_mode = 3
@@ -11,12 +14,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yh430")
 
+[node name="Ooo" type="Sprite2D" parent="." unique_id=986552308]
+position = Vector2(552.75, 417.875)
+scale = Vector2(0.16882819, 0.16810784)
+texture = ExtResource("2_dtrtw")
+
 [node name="Button" type="Button" parent="." unique_id=936271570]
 layout_mode = 0
-offset_left = 377.0
-offset_top = 644.0
-offset_right = 710.0
-offset_bottom = 725.0
+offset_left = 868.0
+offset_top = 733.0
+offset_right = 1078.0
+offset_bottom = 800.0
 text = "Start Game"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1531178263]
+stream = ExtResource("3_ypw2f")
+autoplay = true
+
+[node name="Fade" parent="." unique_id=36485381 instance=ExtResource("4_qdqra")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

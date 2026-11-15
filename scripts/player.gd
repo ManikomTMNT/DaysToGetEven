@@ -91,12 +91,12 @@ func _playermov(delta):
 	# Attack collision position
 	if Input.is_action_pressed("left"):
 		$AtkCollisionBox.position.x = -87
-		$AnimatedSprite2D.flip_h = true
+		canim.flip_h = true
 		dirr = -1;
 		
 	elif Input.is_action_pressed("right"):
 		$AtkCollisionBox.position.x = 87
-		$AnimatedSprite2D.flip_h = false
+		canim.flip_h = false
 		dirr = 1;
 
 	if Input.is_action_pressed("up"):
@@ -116,19 +116,19 @@ func _playermov(delta):
 				if  Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 					anim = AnimStates.MOV
 			AnimStates.JMP:
-				$AnimatedSprite2D.play("jump")
+				canim.play("jump")
 				if velocity.y >= 0:
 					anim = AnimStates.FALL
 				if  Input.is_action_just_pressed("atk"):
 					anim = AnimStates.ATK
 			AnimStates.FALL:
-				$AnimatedSprite2D.play("fall")
+				canim.play("fall")
 				if Input.is_action_just_pressed("atk"):
 					anim = AnimStates.ATK
 				if is_on_floor():
 					anim = AnimStates.IDLE
 			AnimStates.MOV:
-				$AnimatedSprite2D.play("walk")
+				canim.play("walk")
 				if velocity.x == 0:
 					anim = AnimStates.IDLE
 				if Input.is_action_just_pressed("atk"):
@@ -136,15 +136,15 @@ func _playermov(delta):
 				if not is_on_floor():
 					anim = AnimStates.JMP
 			AnimStates.ATK:
-				$AnimatedSprite2D.play("attack")
-				$AnimatedSprite2D.animation_finished.connect(func():
+				canim.play("attack")
+				canim.animation_finished.connect(func():
 					if not is_on_floor():
 						anim = AnimStates.FALL
 					else:
 						anim = AnimStates.MOV
 						)
 	else:
-		$AnimatedSprite2D.play("dizzy")
+		canim.play("dizzy")
 
 		
 	if ghit:
@@ -167,10 +167,10 @@ func _physics_process(delta: float) -> void:
 			else:
 				timer = 0
 				$ExplosionArea.called = true
-				$AnimatedSprite2D.scale = Vector2(2.13,2.13)
-				$AnimatedSprite2D.play("explode")
-				$AnimatedSprite2D.animation_finished.connect (func(): 
-						$AnimatedSprite2D.scale = Vector2(0.77,0.77)
+				canim.scale = Vector2(2.13,2.13)
+				canim.play("explode")
+				canim.animation_finished.connect (func(): 
+						canim.scale = Vector2(0.77,0.77)
 						state = States.NORMAL)
 		States.ELECTRIC:			
 			if dizz:
@@ -180,11 +180,11 @@ func _physics_process(delta: float) -> void:
 					dizz = false
 			else:
 				if timer < 100:
-					$AnimatedSprite2D.self_modulate = Color(1, 1, 0);
+					canim.self_modulate = Color(1, 1, 0);
 					_playermov(delta)
 					timer += 1
 				else:
-					$AnimatedSprite2D.self_modulate = Color(1, 1, 1);
+					canim.self_modulate = Color(1, 1, 1);
 					state = States.NORMAL
 		States.PUNCH:
 			if dizz:
@@ -194,9 +194,9 @@ func _physics_process(delta: float) -> void:
 					dizz = false	
 			else:
 				$PunchA.called = true;
-				$AnimatedSprite2D.play("punched")
-				$AnimatedSprite2D.flip_h = false
-				$AnimatedSprite2D.animation_finished.connect(func():
+				canim.play("punched")
+				canim.flip_h = false
+				canim.animation_finished.connect(func():
 									state = States.NORMAL)
 		States.SLASH:
 			if dizz:
@@ -207,8 +207,8 @@ func _physics_process(delta: float) -> void:
 			else:
 				$SpurtA/AnimatedSprite2D.show();
 				$SpurtA.called = true;
-				$AnimatedSprite2D.play("slashed")
-				$AnimatedSprite2D.animation_finished.connect(func():				
+				canim.play("slashed")
+				canim.animation_finished.connect(func():				
 									$SpurtA/AnimatedSprite2D.hide();
 									state = States.NORMAL)
 		_:
