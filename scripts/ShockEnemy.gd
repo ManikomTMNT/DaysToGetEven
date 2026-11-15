@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var dir = 0
-
+	print(hp);
 
 	if hp < 1:
 		queue_free()
@@ -32,15 +32,14 @@ func _physics_process(delta: float) -> void:
 	if player:
 		dir = position.direction_to(player.global_position)
 		velocity = dir * ENEMSPD
-	
-	if velocity.x > 0:
-		$AtkArea.position.x = 58;
-	elif velocity.x < 0:
-		$AtkArea.position.x = -58;
-	
+		for i in get_slide_collision_count():
+			var collision := get_slide_collision(i)
+			var collider := collision.get_collider()
+			if collider.is_in_group("Player") and player:
+				queue_free()
 	if gothit:
 		gothit = false
-		velocity.x -= 1000*sign(dir.x)
+		velocity.x -= 300*sign(dir.x)
 
 
 	if isjmp and is_on_floor():

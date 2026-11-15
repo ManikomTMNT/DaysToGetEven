@@ -68,33 +68,40 @@ script = ExtResource("1_65w2a")
 hp = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
-position = Vector2(4.5, 0.5)
+position = Vector2(4.4999995, 0.49999997)
+scale = Vector2(0.91024387, 0.99999994)
 shape = SubResource("RectangleShape2D_x2ouf")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=15620208]
+scale = Vector2(0.9102439, 1)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=576573970]
 position = Vector2(4.5, 0.5)
 shape = SubResource("RectangleShape2D_x2ouf")
 
 [node name="Area2D2" type="Area2D" parent="." unique_id=988670838]
+position = Vector2(-20.19512, 0)
 script = ExtResource("2_kmx34")
+atkrate = 0
 sort = "punch"
+dmg = 150
 
 [node name="F" type="CollisionShape2D" parent="Area2D2" unique_id=395228510]
-position = Vector2(15, 1)
+position = Vector2(36.46341, 5.9604645e-08)
 shape = SubResource("RectangleShape2D_x2ouf")
 
 [node name="Area2D3" type="Area2D" parent="." unique_id=1165676366]
-position = Vector2(-100, 0)
+position = Vector2(-85.26829, 0)
 script = ExtResource("2_kmx34")
+atkrate = 1
 sort = "punch"
+dmg = 150
 
 [node name="F2" type="CollisionShape2D" parent="Area2D3" unique_id=162680758]
-position = Vector2(95, -3)
+position = Vector2(77.414635, -3.5527137e-15)
 shape = SubResource("RectangleShape2D_x2ouf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=970009368]
 scale = Vector2(0.416, 0.416)
 sprite_frames = SubResource("SpriteFrames_x2ouf")
-frame_progress = 0.7251857
+frame_progress = 0.76120335

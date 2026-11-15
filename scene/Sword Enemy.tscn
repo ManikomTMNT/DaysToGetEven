@@ -80,8 +80,9 @@ shape = SubResource("RectangleShape2D_x2ouf")
 [node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
 position = Vector2(58, -2)
 script = ExtResource("2_beljo")
-atkrate = 17
+atkrate = 0
 sort = "sword"
+dmg = 5
 
 [node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
 position = Vector2(-18, -23)

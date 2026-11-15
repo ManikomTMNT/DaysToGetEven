@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cixlpk5rn4h5j" path="res://sprites/Evener-Sheet.png" id="2_xd2e7"]
 [ext_resource type="Script" uid="uid://26uhv8cvnawu" path="res://scripts/EnemyAtkHit.gd" id="3_xd2e7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
+size = Vector2(59, 106)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd17r"]
 atlas = ExtResource("2_xd2e7")
 region = Rect2(896, 0, 128, 128)
@@ -120,11 +123,8 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
-size = Vector2(59, 106)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pd17r"]
-size = Vector2(18.365646, 31.174286)
+size = Vector2(13.871706, 31.70942)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3rjgh"]
 atlas = ExtResource("2_xd2e7")
@@ -144,30 +144,34 @@ animations = [{
 [node name="The Evener" type="CharacterBody2D" unique_id=1787358943 groups=["Boss", "Enemy"]]
 script = ExtResource("1_08ta4")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
+position = Vector2(-6.5, -15)
+shape = SubResource("RectangleShape2D_x2ouf")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1843714916]
 position = Vector2(2, -12)
 scale = Vector2(1.09375, 1.09375)
 sprite_frames = SubResource("SpriteFrames_qdfsg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
-position = Vector2(-6.5, -15)
-shape = SubResource("RectangleShape2D_x2ouf")
-
 [node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
-visible = false
 position = Vector2(6.9999995, 1.1920929e-07)
-scale = Vector2(3.998626, 3.636487)
+scale = Vector2(inf, 0.9647926)
 script = ExtResource("3_xd2e7")
 atkrate = 1
 sort = "nah"
 
-[node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
-position = Vector2(-2.875987, -3.5748763)
-scale = Vector2(0.8851085, 0.9999994)
-shape = SubResource("RectangleShape2D_pd17r")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkArea" unique_id=972491106]
+position = Vector2(-6.5, -15)
+shape = SubResource("RectangleShape2D_x2ouf")
 
 [node name="bULLET" type="CharacterBody2D" parent="." unique_id=1878137880]
 position = Vector2(-51, 1)
+
+[node name="F" type="CollisionShape2D" parent="bULLET" unique_id=645029702]
+position = Vector2(-10.5, -21.5)
+scale = Vector2(0.8851084, 0.99999934)
+shape = SubResource("RectangleShape2D_pd17r")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bULLET" unique_id=1036175799]
 position = Vector2(0, -21)
@@ -179,8 +183,16 @@ scale = Vector2(1.8732744, 3.8789752)
 script = ExtResource("3_xd2e7")
 atkrate = 1
 sort = "nah"
+dmg = 10
 
 [node name="F" type="CollisionShape2D" parent="bULLET/AtkArea2" unique_id=1316576989]
-position = Vector2(-2.8759866, -3.574876)
-scale = Vector2(0.8851084, 0.99999934)
+position = Vector2(-2.9360352, -3.2225018)
+scale = Vector2(0.88510853, 0.9999999)
 shape = SubResource("RectangleShape2D_pd17r")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=338753140]
+offset_left = -6.0
+offset_top = -111.0
+offset_right = -2.0
+offset_bottom = -84.0
+max_value = 2000.0

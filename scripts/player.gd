@@ -36,8 +36,8 @@ var dirr = 0;
 var timer = 0
 
 func ow(di, sort, dmg):
-
 	if state == States.NORMAL:
+		hp -= dmg;
 		dizz = true
 		timer = 0
 		match sort:
@@ -52,11 +52,9 @@ func ow(di, sort, dmg):
 			_:
 				dizz = false
 				state = States.NORMAL
-
+	
 
 func _ready():
-	hp_bar.max_value = 100
-	hp_bar.value = hp
 	$SpurtA/AnimatedSprite2D.hide();
 
 func _playermov(delta):
@@ -90,12 +88,12 @@ func _playermov(delta):
 
 	# Attack collision position
 	if Input.is_action_pressed("left"):
-		$AtkCollisionBox.position.x = -87
+		$AtkCollisionBox.position.x = -73
 		$AnimatedSprite2D.flip_h = true
 		dirr = -1;
 		
 	elif Input.is_action_pressed("right"):
-		$AtkCollisionBox.position.x = 87
+		$AtkCollisionBox.position.x = -28
 		$AnimatedSprite2D.flip_h = false
 		dirr = 1;
 
@@ -145,7 +143,7 @@ func _playermov(delta):
 						)
 	else:
 		$AnimatedSprite2D.play("dizzy")
-
+	
 		
 	if ghit:
 		ghit = false
@@ -153,7 +151,16 @@ func _playermov(delta):
 	
 	move_and_slide()
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
+	hp_bar.value = hp
+	if hp < 200:
+		hp += 1;
+	
+	print(hp)
+
+	if hp < 0:
+		queue_free()
+	
 	match state:
 		States.NORMAL:
 			_playermov(delta)

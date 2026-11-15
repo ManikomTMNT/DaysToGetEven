@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://byjybywmvd8xd"]
 
 [ext_resource type="Script" uid="uid://dr6d6f0lf5fh7" path="res://scripts/player.gd" id="1_hjaqi"]
-[ext_resource type="Texture2D" uid="uid://d35ceffx4g8le" path="res://icon.svg" id="2_fvtld"]
 [ext_resource type="Script" uid="uid://bixp7320tui7y" path="res://scripts/PlayerAtkHit.gd" id="3_fvtld"]
 [ext_resource type="Texture2D" uid="uid://3nw0n4anc5bd" path="res://sprites/Day-Sheet.png" id="4_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://bb2bkfptiyjvp" path="res://sprites/dude.png" id="5_s4jxa"]
@@ -386,21 +385,15 @@ size = Vector2(65.99338, 116.98826)
 script = ExtResource("1_hjaqi")
 
 [node name="AtkCollisionBox" type="Area2D" parent="." unique_id=2113646932]
-visible = false
-position = Vector2(44, 0)
+position = Vector2(80, 1)
 script = ExtResource("3_fvtld")
 dmg = 10
 isjk = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkCollisionBox" unique_id=582393859]
-position = Vector2(12.75, 0)
+position = Vector2(-21, -1)
+scale = Vector2(0.52, 1)
 shape = SubResource("RectangleShape2D_ddnp7")
-
-[node name="AtkIndicator" type="Sprite2D" parent="AtkCollisionBox" unique_id=536815534]
-visible = false
-position = Vector2(7.6293945e-06, 9.536743e-07)
-scale = Vector2(0.54281443, 0.6026434)
-texture = ExtResource("2_fvtld")
 
 [node name="Timer" type="Timer" parent="AtkCollisionBox" unique_id=173119670]
 one_shot = true
@@ -421,14 +414,18 @@ offset_left = -75.0
 offset_top = -102.0
 offset_right = 75.0
 offset_bottom = -75.0
+max_value = 200.0
 
 [node name="DizzyTimer" type="Timer" parent="." unique_id=521498616]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1850229253]
-position = Vector2(-6.999998, 5.000003)
+z_index = 2
+position = Vector2(20.000002, 3.9999998)
 scale = Vector2(0.77, 0.77)
 sprite_frames = SubResource("SpriteFrames_qdfsg")
-animation = &"punched"
+animation = &"attack"
+frame = 2
+frame_progress = 1.0
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=2127076357]
 visible = false
@@ -439,7 +436,7 @@ animation = &"attack"
 frame_progress = 0.91975033
 
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1737228890]
-position = Vector2(3, 10)
+position = Vector2(33, 8)
 scale = Vector2(0.7788358, 0.7788358)
 script = ExtResource("3_fvtld")
 dmg = 5
@@ -467,10 +464,10 @@ one_shot = true
 autostart = true
 
 [node name="SpurtA" type="Area2D" parent="." unique_id=1988401759]
-position = Vector2(3, 10)
+position = Vector2(32, 2)
 scale = Vector2(0.7788358, 0.7788358)
 script = ExtResource("3_fvtld")
-dmg = 2
+dmg = 30
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpurtA" unique_id=1304022336]
 position = Vector2(321.43945, 8.987776)
@@ -495,7 +492,7 @@ sprite_frames = SubResource("SpriteFrames_x2ouf")
 offset = Vector2(63.902836, -1.8866405)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="SpurtA" unique_id=1343886972]
-position = Vector2(-358.227, 8.987775)
+position = Vector2(-319.70795, 8.987775)
 shape = SubResource("RectangleShape2D_of57s")
 
 [node name="AbilityTimer" type="Timer" parent="." unique_id=964760264]

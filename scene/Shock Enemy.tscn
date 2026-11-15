@@ -53,11 +53,11 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jevan"]
-radius = 12.165525
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_bccfb"]
 radius = 20.077877
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrc5s"]
+radius = 4.5918365
 
 [node name="Shock Enemy" type="CharacterBody2D" unique_id=1787358943 groups=["Enemy"]]
 script = ExtResource("1_y4vu4")
@@ -69,18 +69,16 @@ sprite_frames = SubResource("SpriteFrames_qdfsg")
 animation = &"shock"
 frame_progress = 0.17579618
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
-shape = SubResource("CircleShape2D_jevan")
-
 [node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
-position = Vector2(3.8146973e-06, -1.1920929e-07)
+position = Vector2(94, 18.999998)
 scale = Vector2(3.998626, 3.636487)
 script = ExtResource("2_y4vu4")
-atkrate = 17
+atkrate = 0
 sort = "shock"
+dmg = 50
 
 [node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
-position = Vector2(-0.5001717, -3.0248983)
+position = Vector2(-23.007902, -6.3247857)
 scale = Vector2(0.8851088, 0.9999999)
 shape = SubResource("CircleShape2D_bccfb")
 
@@ -96,6 +94,11 @@ visible = false
 position = Vector2(2.2737368e-13, -1.9999998)
 scale = Vector2(1.3424084, 1.2593709)
 texture = ExtResource("2_jevan")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1902804530]
+position = Vector2(2, -1.0000076)
+scale = Vector2(1.96, 1.64)
+shape = SubResource("CircleShape2D_mrc5s")
 
 [connection signal="timeout" from="ShockTimer" to="." method="_on_shock_timer_timeout"]
 [connection signal="timeout" from="ShockVisTimer" to="." method="_on_shock_vis_timer_timeout"]
