@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		dir = position.direction_to(player.global_position)
 	if player:
 		if self.is_in_group("Boss"):
-			time += 1;
+			time += 0.75;
 			match even:
 				States.IDLE:
 					$AnimatedSprite2D.play("default")

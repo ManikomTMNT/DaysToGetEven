@@ -12,12 +12,12 @@ size = Vector2(2402, 278)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=878539570]
 scale = Vector2(0.5141124, 0.61483514)
-scroll_offset = Vector2(-1753.805, 411)
-repeat_size = Vector2(3600, 0)
-autoscroll = Vector2(150, 0)
+scroll_offset = Vector2(0, 411)
+repeat_size = Vector2(2880, 0)
+autoscroll = Vector2(50, 0)
 
 [node name="Ta" type="Sprite2D" parent="Parallax2D" unique_id=1884903629]
-position = Vector2(322.8866, 0)
+position = Vector2(883.0754, 0)
 texture = ExtResource("1_brvut")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=556491267]

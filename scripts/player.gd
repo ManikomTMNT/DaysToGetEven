@@ -2,18 +2,21 @@ extends CharacterBody2D
 
 @onready var dash_timer = $DashTimer
 @onready var hp_bar = $HPBar
-@onready var canim = $AnimatedSprite2D
+@onready var canim = $Animo/AnimatedSprite2D2
+@onready var canim_node = $Animo
 
 var SPEED = 40.0
 var JUMP_VELOCITY = -1100.0
-var DASH_SPEED = 900.0
+var DASH_SPEED = 2900.0
 var MAXSPD = 300
 var enem_typeo = "none"
-var hp = 200
+var hp = 250
 var ghit = false
 var dhit = 0
 var tired = false
 var dash_direction = Vector2.ZERO
+var can_dash = true;
+var is_dashing = false;
 
 enum AnimStates {
 	ATK,
@@ -55,6 +58,11 @@ func ow(di, sort, dmg):
 	
 
 func _ready():
+	if Globali.selected_char_id == 0:
+		canim = $Animo/AnimatedSprite2D
+	else:
+		canim = $Animo/AnimatedSprite2D2
+	canim.visible = true;
 	$SpurtA/AnimatedSprite2D.hide();
 
 func _playermov(delta):
@@ -80,28 +88,21 @@ func _playermov(delta):
 
 	var direction := Input.get_axis("left", "right")
 
-	if direction:
+	if direction && !is_dashing:
 		velocity.x = clamp(velocity.x, -MAXSPD, MAXSPD)
 		velocity.x += direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	# Attack collision position
+	# atk collision position
 	if Input.is_action_pressed("left"):
 		$AtkCollisionBox.position.x = -73
-		$AnimatedSprite2D.flip_h = true
+		canim_node.scale.x = -1;
 		dirr = -1;
 		
 	elif Input.is_action_pressed("right"):
-		$AtkCollisionBox.position.x = -28
-		$AnimatedSprite2D.flip_h = false
 		$AtkCollisionBox.position.x = -87
-		canim.flip_h = true
-		dirr = -1;
-		
-	elif Input.is_action_pressed("right"):
-		$AtkCollisionBox.position.x = 87
-		canim.flip_h = false
+		canim_node.scale.x = 1;
 		dirr = 1;
 
 	if Input.is_action_pressed("up"):
@@ -149,8 +150,6 @@ func _playermov(delta):
 						anim = AnimStates.MOV
 						)
 	else:
-		$AnimatedSprite2D.play("dizzy")
-	
 		canim.play("dizzy")
 
 		
@@ -158,17 +157,39 @@ func _playermov(delta):
 		ghit = false
 		velocity.x = dhit * 600
 	
+	if Input.is_action_just_pressed("dash") and can_dash:
+		is_dashing = true
+		can_dash = false
+
+		var input_dir = Vector2.ZERO
+		input_dir.x = Input.get_axis("left", "right")
+		input_dir.y = Input.get_axis("up", "down")
+
+		if input_dir == Vector2.ZERO:
+			input_dir.x = sign($AtkCollisionBox.position.x)
+
+		if input_dir == Vector2.ZERO:
+			input_dir = Vector2.RIGHT
+
+		dash_direction = input_dir.normalized()
+		velocity = dash_direction * DASH_SPEED
+
+		dash_timer.start()
+
+	if !is_dashing and is_on_floor() and !can_dash:
+		can_dash = true
+	
 	move_and_slide()
 	
 func _physics_process(delta: float) -> void:	
 	hp_bar.value = hp
-	if hp < 200:
+	if hp < 250:
 		hp += 1;
 	
 	print(hp)
 
 	if hp < 0:
-		queue_free()
+		get_tree().change_scene_to_file("res://scene/GameOver.tscn");
 	
 	match state:
 		States.NORMAL:
@@ -234,3 +255,9 @@ func _physics_process(delta: float) -> void:
 
 
 	
+
+
+func _on_dash_timer_timeout() -> void:
+	is_dashing = false
+	if is_on_floor():
+		can_dash = true

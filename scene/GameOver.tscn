@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://d4jcbnp5tx5vg"]
+
+[ext_resource type="Script" uid="uid://4ikgw57h21e5" path="res://scripts/gameover.gd" id="1_u7gfx"]
+[ext_resource type="Texture2D" uid="uid://xkpquiyw7fu8" path="res://sprites/ta.png" id="2_3qd2y"]
+[ext_resource type="AudioStream" uid="uid://bqeokl318ndag" path="res://music/Title Screener.wav" id="3_n68tt"]
+[ext_resource type="PackedScene" uid="uid://crixx7rt7y8wy" path="res://scene/Fade.tscn" id="4_b1nj0"]
+
+[node name="GameOver" type="Control" unique_id=332482430]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u7gfx")
+
+[node name="Ooo" type="Sprite2D" parent="." unique_id=986552308]
+position = Vector2(552.75, 417.875)
+scale = Vector2(2.406829, 2.250461)
+texture = ExtResource("2_3qd2y")
+
+[node name="Label" type="Label" parent="Ooo" unique_id=134983562]
+offset_left = -155.7028
+offset_top = -79.92807
+offset_right = -63.702805
+offset_bottom = -56.92807
+scale = Vector2(3.4702308, 3.4702308)
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="." unique_id=936271570]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 447.0
+offset_right = 664.0
+offset_bottom = 514.0
+text = "Back to Title"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1531178263]
+stream = ExtResource("3_n68tt")
+autoplay = true
+
+[node name="Fade" parent="." unique_id=36485381 instance=ExtResource("4_b1nj0")]
+visible = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

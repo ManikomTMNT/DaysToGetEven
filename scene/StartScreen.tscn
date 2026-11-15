@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://d4jcbnp5tx5vg"]
+[gd_scene format=3 uid="uid://dpy7iwtwoq7lj"]
 
-[ext_resource type="Script" uid="uid://cgjr5vu0c6m75" path="res://scripts/StartScreen.gd" id="1_yh430"]
-[ext_resource type="Texture2D" uid="uid://b0t78gwr150nj" path="res://sprites/ooo.png" id="2_dtrtw"]
-[ext_resource type="AudioStream" uid="uid://bqeokl318ndag" path="res://music/Title Screener.wav" id="3_ypw2f"]
-[ext_resource type="PackedScene" uid="uid://crixx7rt7y8wy" path="res://scene/Fade.tscn" id="4_qdqra"]
+[ext_resource type="Script" uid="uid://cgjr5vu0c6m75" path="res://scripts/StartScreen.gd" id="1_u7gfx"]
+[ext_resource type="Texture2D" uid="uid://b0t78gwr150nj" path="res://sprites/ooo.png" id="2_3qd2y"]
+[ext_resource type="AudioStream" uid="uid://bqeokl318ndag" path="res://music/Title Screener.wav" id="3_n68tt"]
+[ext_resource type="PackedScene" uid="uid://crixx7rt7y8wy" path="res://scene/Fade.tscn" id="4_b1nj0"]
 
 [node name="StartScreen" type="Control" unique_id=332482430]
 layout_mode = 3
@@ -12,25 +12,45 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yh430")
+script = ExtResource("1_u7gfx")
 
 [node name="Ooo" type="Sprite2D" parent="." unique_id=986552308]
 position = Vector2(552.75, 417.875)
 scale = Vector2(0.16882819, 0.16810784)
-texture = ExtResource("2_dtrtw")
+texture = ExtResource("2_3qd2y")
 
 [node name="Button" type="Button" parent="." unique_id=936271570]
 layout_mode = 0
 offset_left = 868.0
-offset_top = 733.0
+offset_top = 543.0
 offset_right = 1078.0
-offset_bottom = 800.0
+offset_bottom = 610.0
 text = "Start Game"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1531178263]
-stream = ExtResource("3_ypw2f")
+stream = ExtResource("3_n68tt")
 autoplay = true
 
-[node name="Fade" parent="." unique_id=36485381 instance=ExtResource("4_qdqra")]
+[node name="Fade" parent="." unique_id=36485381 instance=ExtResource("4_b1nj0")]
+visible = false
+
+[node name="OptionButton" type="OptionButton" parent="." unique_id=133353731]
+layout_mode = 0
+offset_left = 868.0
+offset_top = 667.0
+offset_right = 1078.0
+offset_bottom = 698.0
+item_count = 2
+popup/item_0/text = "Day"
+popup/item_0/id = 0
+popup/item_1/text = "Reflection Guy"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="OptionButton" unique_id=196407103]
+layout_mode = 0
+offset_top = -31.0
+offset_right = 196.0
+offset_bottom = -8.0
+text = "Select Playable Character"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
