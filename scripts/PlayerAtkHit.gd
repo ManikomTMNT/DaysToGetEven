@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("atk") and not  $"..".dizz and ($"..".state == $"..".States.NORMAL) or ($"..".state == $"..".States.ELECTRIC):
 			if $"..".state == $"..".States.ELECTRIC:
 				pdmg = dmg
-				dmg = 20
+				dmg = 100
 			else: 
 				dmg = pdmg
 			is_atking = true;

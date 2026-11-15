@@ -10,7 +10,7 @@ var gothit = false;
 @export var isjmp = false;
 
 var t = 200;
-
+var tt = 0;
 func ow(k):
 	hp -= k;
 	gothit = true;
@@ -35,8 +35,12 @@ func _physics_process(delta: float) -> void:
 		for i in get_slide_collision_count():
 			var collision := get_slide_collision(i)
 			var collider := collision.get_collider()
-			if collider.is_in_group("Player") and player:
-				queue_free()
+			if collider:
+				tt += 1;
+				if tt > 10:
+					tt = 0
+					if collider.is_in_group("Player"):
+						queue_free()
 	if gothit:
 		gothit = false
 		velocity.x -= 300*sign(dir.x)

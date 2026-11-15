@@ -36,7 +36,7 @@ var dirr = 0;
 var timer = 0
 
 func ow(di, sort, dmg):
-	if state == States.NORMAL:
+	if state == States.NORMAL and not anim == AnimStates.ATK :
 		hp -= dmg;
 		dizz = true
 		timer = 0
