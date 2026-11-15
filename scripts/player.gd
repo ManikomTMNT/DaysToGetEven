@@ -108,7 +108,7 @@ func _playermov(delta):
 		match anim:
 			
 			AnimStates.IDLE:
-				$AnimatedSprite2D.play("idle")
+				canim.play("idle")
 				if not is_on_floor():
 					anim = AnimStates.JMP
 				if  Input.is_action_just_pressed("atk"):

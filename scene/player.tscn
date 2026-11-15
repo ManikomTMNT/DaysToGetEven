@@ -259,10 +259,6 @@ region = Rect2(2560, 0, 256, 128)
 atlas = ExtResource("5_s4jxa")
 region = Rect2(2816, 0, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pk8el"]
-atlas = ExtResource("5_s4jxa")
-region = Rect2(1792, 0, 256, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vgh4"]
 atlas = ExtResource("5_s4jxa")
 region = Rect2(0, 0, 256, 128)
@@ -270,6 +266,10 @@ region = Rect2(0, 0, 256, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3knh"]
 atlas = ExtResource("5_s4jxa")
 region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk8el"]
+atlas = ExtResource("5_s4jxa")
+region = Rect2(1792, 0, 256, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n3008"]
 atlas = ExtResource("5_s4jxa")
@@ -312,6 +312,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3vgh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3knh")
+}],
+"loop": 1,
+"name": &"dizzy",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuf2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk4ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrjdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4reak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt23p")
+}],
+"loop": 1,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pk8el")
 }],
 "loop": 1,
@@ -327,6 +361,28 @@ animations = [{
 }],
 "loop": 1,
 "name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vgh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3knh")
+}],
+"loop": 1,
+"name": &"idle_2",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vgh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3knh")
+}],
+"loop": 1,
+"name": &"idle_3",
 "speed": 2.0
 }, {
 "frames": [{
@@ -428,15 +484,15 @@ offset_bottom = -75.0
 position = Vector2(-6.999998, 5.000003)
 scale = Vector2(0.77, 0.77)
 sprite_frames = SubResource("SpriteFrames_qdfsg")
-animation = &"punched"
+animation = &"idle"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=2127076357]
 visible = false
-position = Vector2(50, -11)
+position = Vector2(19.000004, -10)
 scale = Vector2(0.8972304, 0.8972304)
 sprite_frames = SubResource("SpriteFrames_ct4mp")
-animation = &"attack"
-frame_progress = 0.91975033
+animation = &"idle_2"
+offset = Vector2(63.52883, -1.114541)
 
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1737228890]
 position = Vector2(3, 10)
