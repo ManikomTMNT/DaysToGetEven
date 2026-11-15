@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkbigbhwvyrht"
+path="res://.godot/imported/The Evener.wav-27f2f60922c3160592003e259e8b90b5.sample"
+
+[deps]
+
+source_file="res://music/The Evener.wav"
+dest_files=["res://.godot/imported/The Evener.wav-27f2f60922c3160592003e259e8b90b5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
