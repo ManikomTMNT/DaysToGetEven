@@ -2,58 +2,76 @@ extends CharacterBody2D
 
 @onready var dash_timer = $DashTimer
 @onready var hp_bar = $HPBar
-@onready var anim = $AnimatedSprite2D
+@onready var canim = $AnimatedSprite2D
 
-const SPEED = 40.0
-const JUMP_VELOCITY = -1100.0
-const DASH_SPEED = 900.0
-var electric = false;
+var SPEED = 40.0
+var JUMP_VELOCITY = -1100.0
+var DASH_SPEED = 900.0
 var MAXSPD = 300
-var attacking = false
 var enem_typeo = "none"
-var hp = 100
+var hp = 200
 var ghit = false
 var dhit = 0
 var tired = false
 var dash_direction = Vector2.ZERO
-var is_dashing = false
-var can_dash = true
-var exploding = false 
 
-func ow(di, sort):
-	if !tired:
-		ghit = true
-		hp -= 10
-		dhit = di
-		hp_bar.value = hp
-		tired = true
-		enem_typeo = sort
-		anim.play("dizzy")
-		$DizzyTimer.start()
+enum AnimStates {
+	ATK,
+	JMP,
+	FALL,
+	MOV,
+	IDLE
+}
+enum States {
+	FIRE,
+	ELECTRIC,
+	SLASH,
+	PUNCH,
+	NORMAL
+}
+var anim = AnimStates.IDLE
+var state = States.NORMAL
+var dizz = false
+var dirr = 0;
+var timer = 0
+
+func ow(di, sort, dmg):
+
+	if state == States.NORMAL:
+		dizz = true
+		timer = 0
+		match sort:
+			"firebull":
+				state = States.FIRE
+			"shock":
+				state = States.ELECTRIC
+			"punch":
+				state = States.PUNCH
+			"sword":
+				state = States.SLASH
+			_:
+				dizz = false
+				state = States.NORMAL
 
 
 func _ready():
 	hp_bar.max_value = 100
 	hp_bar.value = hp
+	$SpurtA/AnimatedSprite2D.hide();
 
-
-func _physics_process(delta: float) -> void:
-
-	if hp < 1:
-		anim.play("fall")
-		queue_free()
-		return
-
-	if is_dashing:
-		velocity = dash_direction * DASH_SPEED
-		move_and_slide()
-		return
-
-	if tired or electric:
+func _playermov(delta):
+		
+	
+	if state == States.ELECTRIC:
+		JUMP_VELOCITY = -1100
 		MAXSPD = 600
-	else:
+		SPEED = 100
+		DASH_SPEED = 1500
+	else:		
+		JUMP_VELOCITY = -1100
+		SPEED = 50
 		MAXSPD = 300
-
+		DASH_SPEED = 900
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta * 3.5
@@ -61,7 +79,6 @@ func _physics_process(delta: float) -> void:
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		anim.play("jump")
 
 	var direction := Input.get_axis("left", "right")
 
@@ -74,120 +91,130 @@ func _physics_process(delta: float) -> void:
 	# Attack collision position
 	if Input.is_action_pressed("left"):
 		$AtkCollisionBox.position.x = -87
+		$AnimatedSprite2D.flip_h = true
+		dirr = -1;
+		
 	elif Input.is_action_pressed("right"):
 		$AtkCollisionBox.position.x = 87
-	else:
-		$AtkCollisionBox.position.x = 0
+		$AnimatedSprite2D.flip_h = false
+		dirr = 1;
 
 	if Input.is_action_pressed("up"):
 		$AtkCollisionBox.position.y = -87
 	else:
 		$AtkCollisionBox.position.y = 0
+		
+	if not dizz:
+		match anim:
+			
+			AnimStates.IDLE:
+				$AnimatedSprite2D.play("idle")
+				if not is_on_floor():
+					anim = AnimStates.JMP
+				if  Input.is_action_just_pressed("atk"):
+					anim = AnimStates.ATK
+				if  Input.is_action_pressed("left") or Input.is_action_pressed("right"):
+					anim = AnimStates.MOV
+			AnimStates.JMP:
+				$AnimatedSprite2D.play("jump")
+				if velocity.y >= 0:
+					anim = AnimStates.FALL
+				if  Input.is_action_just_pressed("atk"):
+					anim = AnimStates.ATK
+			AnimStates.FALL:
+				$AnimatedSprite2D.play("fall")
+				if Input.is_action_just_pressed("atk"):
+					anim = AnimStates.ATK
+				if is_on_floor():
+					anim = AnimStates.IDLE
+			AnimStates.MOV:
+				$AnimatedSprite2D.play("walk")
+				if velocity.x == 0:
+					anim = AnimStates.IDLE
+				if Input.is_action_just_pressed("atk"):
+					anim = AnimStates.ATK
+				if not is_on_floor():
+					anim = AnimStates.JMP
+			AnimStates.ATK:
+				$AnimatedSprite2D.play("attack")
+				$AnimatedSprite2D.animation_finished.connect(func():
+					if not is_on_floor():
+						anim = AnimStates.FALL
+					else:
+						anim = AnimStates.MOV
+						)
+	else:
+		$AnimatedSprite2D.play("dizzy")
 
-	# Dash
-	if Input.is_action_just_pressed("dash") and can_dash:
-		is_dashing = true
-		can_dash = false
-
-		var input_dir = Vector2.ZERO
-		input_dir.x = Input.get_axis("left", "right")
-		input_dir.y = Input.get_axis("up", "down")
-
-		if input_dir == Vector2.ZERO:
-			input_dir.x = sign($AtkCollisionBox.position.x)
-
-		if input_dir == Vector2.ZERO:
-			input_dir = Vector2.RIGHT
-
-		dash_direction = input_dir.normalized()
-		velocity = dash_direction * DASH_SPEED
-
-		dash_timer.start()
-
-	if !is_dashing and is_on_floor() and !can_dash:
-		can_dash = true
-
+		
 	if ghit:
 		ghit = false
 		velocity.x = dhit * 600
-
+	
 	move_and_slide()
-
-	# Anim
 	
-	$AnimatedSprite2D.self_modulate = Color(1,1,1);
-	if electric:
-		$AnimatedSprite2D.self_modulate = Color(1, 1, 0);
+func _physics_process(delta: float) -> void:
+	match state:
+		States.NORMAL:
+			_playermov(delta)
+			dizz =false;
+		States.FIRE:
+			if dizz:
+				_playermov(delta)
+				timer += 1;
+				if timer >= 80:
+					dizz = false
+			else:
+				timer = 0
+				$ExplosionArea.called = true
+				$AnimatedSprite2D.scale = Vector2(2.13,2.13)
+				$AnimatedSprite2D.play("explode")
+				$AnimatedSprite2D.animation_finished.connect (func(): 
+						$AnimatedSprite2D.scale = Vector2(0.77,0.77)
+						state = States.NORMAL)
+		States.ELECTRIC:			
+			if dizz:
+				_playermov(delta)
+				timer += 1;
+				if timer >= 0:
+					dizz = false
+			else:
+				if timer < 100:
+					$AnimatedSprite2D.self_modulate = Color(1, 1, 0);
+					_playermov(delta)
+					timer += 1
+				else:
+					$AnimatedSprite2D.self_modulate = Color(1, 1, 1);
+					state = States.NORMAL
+		States.PUNCH:
+			if dizz:
+				_playermov(delta)
+				timer += 1;
+				if timer >= 80:
+					dizz = false	
+			else:
+				$PunchA.called = true;
+				$AnimatedSprite2D.play("punched")
+				$AnimatedSprite2D.flip_h = false
+				$AnimatedSprite2D.animation_finished.connect(func():
+									state = States.NORMAL)
+		States.SLASH:
+			if dizz:
+				_playermov(delta)
+				timer += 1;
+				if timer >= 80:
+					dizz = false	
+			else:
+				$SpurtA/AnimatedSprite2D.show();
+				$SpurtA.called = true;
+				$AnimatedSprite2D.play("slashed")
+				$AnimatedSprite2D.animation_finished.connect(func():				
+									$SpurtA/AnimatedSprite2D.hide();
+									state = States.NORMAL)
+		_:
+			state = States.NORMAL
+			
+	print(state);
+
+
 	
-	if attacking:
-		pass
-
-	elif tired:
-		if anim.animation != "dizzy":
-			anim.play("dizzy")
-
-	elif !is_on_floor():
-		if velocity.y > 0:
-			if anim.animation != "fall":
-				anim.play("fall")
-		else:
-			if anim.animation != "jump":
-				anim.play("jump")
-
-	elif abs(velocity.x) > 5:
-		if anim.animation != "walk":
-			anim.play("walk")
-
-	else:
-		if anim.animation != "idle":
-			anim.play("idle")
-
-	# Flip sprite based on direction
-	if velocity.x != 0:
-		anim.flip_h = velocity.x < 0
-
-
-func _on_dash_timer_timeout() -> void:
-	is_dashing = false
-	if is_on_floor():
-		can_dash = true
-
-func atk():
-	if attacking or tired:
-		return
-
-	attacking = true
-	anim.play("attack")
-
-func _on_dizzy_timer_timeout() -> void:
-	if tired:
-		if enem_typeo == "shock":
-			electric = true;
-		if enem_typeo == "firebull":
-			explode();
-
-		tired = false
-		anim.play("idle")
-
-func explode():
-	exploding = true;
-	anim.play("explode")
-
-	await anim.animation_finished
-
-	for enemy in $ExplosionArea.get_overlapping_bodies():
-		if enemy.is_in_group("enemy"):
-			enemy.ow()
-
-	attacking = false
-	exploding = false;
-	anim.play("idle")
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if anim.animation == "attack":
-		attacking = false
-	$AbilityTimer.start()
-
-
-func _on_ability_timer_timeout() -> void:
-	electric = false;

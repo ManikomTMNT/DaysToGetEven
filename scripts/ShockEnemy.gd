@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const ENEMSPD = 100
+const ENEMSPD = 200
 
 var hp = 100;
 var gothit = false;
@@ -11,7 +11,8 @@ var gothit = false;
 
 var t = 200;
 
-func ow():
+func ow(k):
+	hp -= k;
 	gothit = true;
 
 func _ready() -> void:
@@ -21,9 +22,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var dir = 0
-	
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+
 
 	if hp < 1:
 		queue_free()
@@ -32,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	
 	if player:
 		dir = position.direction_to(player.global_position)
-		velocity.x = dir.x * ENEMSPD
+		velocity = dir * ENEMSPD
 	
 	if velocity.x > 0:
 		$AtkArea.position.x = 58;
@@ -40,7 +39,6 @@ func _physics_process(delta: float) -> void:
 		$AtkArea.position.x = -58;
 	
 	if gothit:
-		hp -= 10
 		gothit = false
 		velocity.x -= 1000*sign(dir.x)
 

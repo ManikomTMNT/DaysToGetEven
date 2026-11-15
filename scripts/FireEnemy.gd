@@ -8,8 +8,9 @@ var gothit = false;
 var direction = Vector2(0, 0);
 var d = 0;
 
-func ow():
+func ow(h):
 	gothit = true;
+	hp -= h;
 
 func _ready():
 	$ShootTimer.start()
@@ -31,7 +32,6 @@ func _physics_process(delta: float) -> void:
 	var player = get_tree().get_first_node_in_group("Player")	
 	
 	if gothit:
-		hp -= 10
 		gothit = false
 	
 	move_and_slide()

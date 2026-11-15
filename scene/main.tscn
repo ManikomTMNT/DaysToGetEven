@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://byjybywmvd8xd" path="res://scene/player.tscn" id="1_itxqv"]
 [ext_resource type="PackedScene" uid="uid://upsvndihhqsd" path="res://scene/Fire Enemy.tscn" id="3_wp4xf"]
 [ext_resource type="Texture2D" uid="uid://c5t7dk4xudn7t" path="res://sprites/platform.png" id="4_0ha60"]
+[ext_resource type="PackedScene" uid="uid://bi52s623cn10q" path="res://scene/Sword Enemy.tscn" id="5_4j5ol"]
+[ext_resource type="PackedScene" uid="uid://8v0ijq2346iv" path="res://scene/Punchenem.tscn" id="6_p1hux"]
+[ext_resource type="PackedScene" uid="uid://d2vn6ji64nbwe" path="res://scene/Shock Enemy.tscn" id="7_of57s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0l8b"]
 size = Vector2(2402, 278)
@@ -23,6 +26,12 @@ texture = ExtResource("1_brvut")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=556491267]
 position = Vector2(537.00037, 783)
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1770816283]
+position = Vector2(81.99963, -915)
+rotation = -1.5811106
+scale = Vector2(1.0000001, 1)
+shape = SubResource("RectangleShape2D_v0l8b")
+
 [node name="Platform" type="Sprite2D" parent="StaticBody2D" unique_id=932936594]
 position = Vector2(-1215, -66)
 scale = Vector2(1.3200002, 1)
@@ -32,8 +41,36 @@ texture = ExtResource("4_0ha60")
 position = Vector2(-1241, 1)
 shape = SubResource("RectangleShape2D_v0l8b")
 
+[node name="Platform2" type="Sprite2D" parent="StaticBody2D" unique_id=1744751093]
+position = Vector2(101.99963, -699)
+rotation = -1.5908741
+scale = Vector2(1.7421622, 1.3201987)
+skew = -0.005214691
+texture = ExtResource("4_0ha60")
+
+[node name="Platform3" type="Sprite2D" parent="StaticBody2D" unique_id=1529405458]
+position = Vector2(-2373.0005, -229)
+rotation = 1.5830536
+scale = Vector2(1.3200425, 1.319976)
+skew = -0.0052223206
+texture = ExtResource("4_0ha60")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=2045855235]
+position = Vector2(-2474, -772)
+rotation = 1.5850079
+shape = SubResource("RectangleShape2D_v0l8b")
+
 [node name="Player" parent="." unique_id=929837633 instance=ExtResource("1_itxqv")]
 position = Vector2(-720, 441)
 
-[node name="Fire Enemy" parent="." unique_id=1787358943 instance=ExtResource("3_wp4xf")]
-position = Vector2(-961, 401)
+[node name="Puncher" parent="." unique_id=1787358943 instance=ExtResource("6_p1hux")]
+position = Vector2(-1305, 452)
+
+[node name="Sworder" parent="." unique_id=1807636305 instance=ExtResource("5_4j5ol")]
+position = Vector2(-467, 552)
+
+[node name="Fire Enemy" parent="." unique_id=1903832750 instance=ExtResource("3_wp4xf")]
+position = Vector2(-1122, 301)
+
+[node name="Shock Enemy" parent="." unique_id=1013776141 instance=ExtResource("7_of57s")]
+position = Vector2(-1139, 551)

@@ -6,27 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://3nw0n4anc5bd" path="res://sprites/Day-Sheet.png" id="4_ct4mp"]
 [ext_resource type="Texture2D" uid="uid://bb2bkfptiyjvp" path="res://sprites/dude.png" id="5_s4jxa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpdt7"]
-size = Vector2(65.99338, 116.98826)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ddnp7"]
 size = Vector2(92.5, 75)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4jxa"]
 atlas = ExtResource("4_ct4mp")
-region = Rect2(640, 0, 128, 128)
+region = Rect2(4736, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oh5ij"]
 atlas = ExtResource("4_ct4mp")
-region = Rect2(768, 0, 128, 128)
+region = Rect2(4864, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hp4bs"]
 atlas = ExtResource("4_ct4mp")
-region = Rect2(896, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2vtq"]
-atlas = ExtResource("4_ct4mp")
-region = Rect2(1024, 0, 128, 128)
+region = Rect2(4992, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fvbb"]
 atlas = ExtResource("4_ct4mp")
@@ -52,13 +45,13 @@ region = Rect2(1664, 0, 128, 128)
 atlas = ExtResource("4_ct4mp")
 region = Rect2(1792, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jrjdb"]
-atlas = ExtResource("4_ct4mp")
-region = Rect2(1920, 0, 128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_kk4ol"]
 atlas = ExtResource("4_ct4mp")
 region = Rect2(2048, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrjdb"]
+atlas = ExtResource("4_ct4mp")
+region = Rect2(1920, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4reak"]
 atlas = ExtResource("4_ct4mp")
@@ -88,6 +81,22 @@ region = Rect2(128, 0, 128, 128)
 atlas = ExtResource("4_ct4mp")
 region = Rect2(1152, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wapc"]
+atlas = ExtResource("4_ct4mp")
+region = Rect2(2560, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyue1"]
+atlas = ExtResource("4_ct4mp")
+region = Rect2(3200, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rkx0"]
+atlas = ExtResource("4_ct4mp")
+region = Rect2(3328, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lu7o"]
+atlas = ExtResource("4_ct4mp")
+region = Rect2(3456, 0, 128, 128)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ja17"]
 atlas = ExtResource("4_ct4mp")
 region = Rect2(256, 0, 128, 128)
@@ -111,13 +120,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hp4bs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g2vtq")
 }],
 "loop": 0,
 "name": &"attack",
-"speed": 10.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -144,10 +150,10 @@ animations = [{
 "texture": SubResource("AtlasTexture_iuf2t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jrjdb")
+"texture": SubResource("AtlasTexture_kk4ol")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kk4ol")
+"texture": SubResource("AtlasTexture_jrjdb")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4reak")
@@ -189,9 +195,34 @@ animations = [{
 "name": &"jump",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wapc")
+}],
 "loop": 1,
-"name": &"new_animation_5",
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyue1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rkx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6lu7o")
+}],
+"loop": 0,
+"name": &"punched",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wapc")
+}],
+"loop": 0,
+"name": &"slashed",
 "speed": 5.0
 }, {
 "frames": [{
@@ -325,19 +356,41 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qdfsg"]
-radius = 73.19742
+radius = 136.1248
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1hux"]
+size = Vector2(59.062515, 99.87775)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_of57s"]
+size = Vector2(676.2621, 60.21061)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj5ck"]
+atlas = ExtResource("4_ct4mp")
+region = Rect2(4096, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2ouf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj5ck")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpdt7"]
+size = Vector2(65.99338, 116.98826)
 
 [node name="Player" type="CharacterBody2D" unique_id=1283556688 groups=["Player"]]
 script = ExtResource("1_hjaqi")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=203195456]
-position = Vector2(-8, -1.3113022e-06)
-scale = Vector2(0.66673356, 0.66673356)
-shape = SubResource("RectangleShape2D_wpdt7")
-
 [node name="AtkCollisionBox" type="Area2D" parent="." unique_id=2113646932]
+visible = false
 position = Vector2(44, 0)
 script = ExtResource("3_fvtld")
+dmg = 10
+isjk = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkCollisionBox" unique_id=582393859]
 position = Vector2(12.75, 0)
@@ -372,10 +425,10 @@ offset_bottom = -75.0
 [node name="DizzyTimer" type="Timer" parent="." unique_id=521498616]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1850229253]
-position = Vector2(3, 10)
-scale = Vector2(0.7788358, 0.7788358)
+position = Vector2(-6.999998, 5.000003)
+scale = Vector2(0.77, 0.77)
 sprite_frames = SubResource("SpriteFrames_qdfsg")
-animation = &"explode"
+animation = &"punched"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=2127076357]
 visible = false
@@ -388,13 +441,72 @@ frame_progress = 0.91975033
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1737228890]
 position = Vector2(3, 10)
 scale = Vector2(0.7788358, 0.7788358)
+script = ExtResource("3_fvtld")
+dmg = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea" unique_id=1149709427]
+position = Vector2(-15.407613, -3.8519032)
 shape = SubResource("CircleShape2D_qdfsg")
+
+[node name="Timer" type="Timer" parent="ExplosionArea" unique_id=249939097]
+one_shot = true
+autostart = true
+
+[node name="PunchA" type="Area2D" parent="." unique_id=614003410]
+position = Vector2(3, 10)
+scale = Vector2(0.7788358, 0.7788358)
+script = ExtResource("3_fvtld")
+dmg = 200
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PunchA" unique_id=1471111231]
+position = Vector2(17.975546, -12.839678)
+shape = SubResource("RectangleShape2D_p1hux")
+
+[node name="Timer" type="Timer" parent="PunchA" unique_id=287316162]
+one_shot = true
+autostart = true
+
+[node name="SpurtA" type="Area2D" parent="." unique_id=1988401759]
+position = Vector2(3, 10)
+scale = Vector2(0.7788358, 0.7788358)
+script = ExtResource("3_fvtld")
+dmg = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpurtA" unique_id=1304022336]
+position = Vector2(321.43945, 8.987776)
+shape = SubResource("RectangleShape2D_of57s")
+
+[node name="Timer" type="Timer" parent="SpurtA" unique_id=743374519]
+one_shot = true
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpurtA" unique_id=27820796]
+position = Vector2(-19.259521, 8.987776)
+scale = Vector2(5.585716, 0.68055797)
+sprite_frames = SubResource("SpriteFrames_x2ouf")
+offset = Vector2(63.902836, -1.8866405)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SpurtA/AnimatedSprite2D" unique_id=463668073]
+position = Vector2(2.7583923, -15.09317)
+rotation = 3.1408463
+scale = Vector2(1.0167389, 0.6805579)
+skew = 0.00024926662
+sprite_frames = SubResource("SpriteFrames_x2ouf")
+offset = Vector2(63.902836, -1.8866405)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SpurtA" unique_id=1343886972]
+position = Vector2(-358.227, 8.987775)
+shape = SubResource("RectangleShape2D_of57s")
 
 [node name="AbilityTimer" type="Timer" parent="." unique_id=964760264]
 wait_time = 3.0
 one_shot = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=203195456]
+visible = false
+position = Vector2(-8, -1.3113022e-06)
+scale = Vector2(0.66673356, 0.66673356)
+shape = SubResource("RectangleShape2D_wpdt7")
 
 [connection signal="timeout" from="AtkCollisionBox/Timer" to="AtkCollisionBox" method="_on_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

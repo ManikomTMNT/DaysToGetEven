@@ -53,11 +53,11 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ouf"]
-size = Vector2(30.51048, 34.098843)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jevan"]
+radius = 12.165525
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bccfb"]
-radius = 15.757814
+radius = 20.077877
 
 [node name="Shock Enemy" type="CharacterBody2D" unique_id=1787358943 groups=["Enemy"]]
 script = ExtResource("1_y4vu4")
@@ -70,7 +70,7 @@ animation = &"shock"
 frame_progress = 0.17579618
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601886129]
-shape = SubResource("RectangleShape2D_x2ouf")
+shape = SubResource("CircleShape2D_jevan")
 
 [node name="AtkArea" type="Area2D" parent="." unique_id=988670838]
 position = Vector2(3.8146973e-06, -1.1920929e-07)

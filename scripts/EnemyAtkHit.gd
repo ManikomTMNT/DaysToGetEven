@@ -6,6 +6,7 @@ var dt = 0
 @export var atkrate = 15
 var can_dmg = true;
 @export var sort = "none";
+@export var dmg = 0;
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,7 +20,7 @@ func _process(delta: float) -> void:
 		if (dt > atkrate):
 			for body in over:
 				if body.is_in_group("Player"):
-					body.ow(sign($"..".velocity.x), sort)
+					body.ow(sign($"..".velocity.x), sort, dmg)
 					if get_parent().has_method("atkresponse"):
 						get_parent().atkresponse();
 			dt = 0

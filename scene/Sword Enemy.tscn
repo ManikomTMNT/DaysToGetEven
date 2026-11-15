@@ -65,7 +65,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w1qh0")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"slash",
 "speed": 7.0
 }]
@@ -81,6 +81,7 @@ shape = SubResource("RectangleShape2D_x2ouf")
 position = Vector2(58, -2)
 script = ExtResource("2_beljo")
 atkrate = 17
+sort = "sword"
 
 [node name="F" type="CollisionShape2D" parent="AtkArea" unique_id=395228510]
 position = Vector2(-18, -23)
@@ -90,5 +91,4 @@ shape = SubResource("RectangleShape2D_hc6w6")
 position = Vector2(4, -29)
 scale = Vector2(0.9036324, 0.9036324)
 sprite_frames = SubResource("SpriteFrames_qdfsg")
-frame = 1
-frame_progress = 0.5221498
+animation = &"slash"

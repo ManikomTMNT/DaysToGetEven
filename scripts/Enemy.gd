@@ -6,14 +6,16 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const ENEMSPD = 100
 
-var hp = 100;
+@export var hp = 100;
+var hh = 0;
 var gothit = false;
 @export var isjmp = false;
 func _ready() -> void:
 	$AnimatedSprite2D.play("default");
 
-func ow():
+func ow(h):
 	gothit = true;
+	hp -= h;
 
 func atkresponse():
 	$AnimatedSprite2D.play("slash");
@@ -24,6 +26,8 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+
+
 	if hp < 1:
 		queue_free()
 		
@@ -33,19 +37,24 @@ func _physics_process(delta: float) -> void:
 		dir = position.direction_to(player.global_position)
 		velocity.x = dir.x * ENEMSPD
 	
-	if velocity.x > 0:
-		$AtkArea.position.x = 58;
-	elif velocity.x < 0:
-		$AtkArea.position.x = -58;
+	if dir.x < 0:
+		$AnimatedSprite2D.flip_h = true 
+	else:
+		$AnimatedSprite2D.flip_h = false
+		
+	if has_node("AtkArea"):
+		if velocity.x > 0:
+			$AtkArea.position.x = 58;
+		elif velocity.x < 0:
+			$AtkArea.position.x = -58;
 	
 	if gothit:
-		hp -= 10
 		gothit = false
 		velocity.x -= 1000*sign(dir.x)
 
 
-	if isjmp and is_on_floor():
-		velocity.y = -100
+	if isjmp and is_on_floor() and randi_range(0,10000) < 10000/2:
+		velocity.y = -500
 	
 	move_and_slide()
 	
