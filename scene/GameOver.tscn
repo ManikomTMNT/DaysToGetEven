@@ -5,6 +5,9 @@
 [ext_resource type="AudioStream" uid="uid://bqeokl318ndag" path="res://music/Title Screener.wav" id="3_n68tt"]
 [ext_resource type="PackedScene" uid="uid://crixx7rt7y8wy" path="res://scene/Fade.tscn" id="4_b1nj0"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_gp1nq"]
+font_size = 41
+
 [node name="GameOver" type="Control" unique_id=332482430]
 layout_mode = 3
 anchors_preset = 15
@@ -24,8 +27,9 @@ offset_left = -155.7028
 offset_top = -79.92807
 offset_right = -63.702805
 offset_bottom = -56.92807
-scale = Vector2(3.4702308, 3.4702308)
+scale = Vector2(1.3669248, 1.3669248)
 text = "GAME OVER"
+label_settings = SubResource("LabelSettings_gp1nq")
 
 [node name="Button" type="Button" parent="." unique_id=936271570]
 layout_mode = 0

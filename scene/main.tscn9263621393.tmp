@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cq73yeuchj7wj"]
+
+[ext_resource type="Texture2D" uid="uid://xkpquiyw7fu8" path="res://sprites/ta.png" id="1_brvut"]
+[ext_resource type="PackedScene" uid="uid://byjybywmvd8xd" path="res://scene/player.tscn" id="1_itxqv"]
+[ext_resource type="Texture2D" uid="uid://c5t7dk4xudn7t" path="res://sprites/platform.png" id="4_0ha60"]
+[ext_resource type="PackedScene" uid="uid://b8vvncj6jj2kt" path="res://scene/TheEvener.tscn" id="4_brvut"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0l8b"]
+size = Vector2(2402, 278)
+
+[node name="Scene1" type="Node2D" unique_id=1865861714]
+position = Vector2(-310, -304)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=878539570]
+scale = Vector2(0.5141124, 0.61483514)
+scroll_offset = Vector2(0, 411)
+repeat_size = Vector2(6000, 0)
+autoscroll = Vector2(50, 0)
+
+[node name="Ta" type="Sprite2D" parent="Parallax2D" unique_id=1884903629]
+position = Vector2(883.0754, 0)
+scale = Vector2(2.0892549, 1)
+texture = ExtResource("1_brvut")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=556491267]
+position = Vector2(537.00037, 783)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1770816283]
+z_index = 2
+position = Vector2(-240.00037, -921.00006)
+rotation = -1.5811106
+scale = Vector2(1.0000001, 1)
+shape = SubResource("RectangleShape2D_v0l8b")
+
+[node name="Platform" type="Sprite2D" parent="StaticBody2D" unique_id=932936594]
+position = Vector2(-1215, -66)
+scale = Vector2(1.3200002, 1)
+texture = ExtResource("4_0ha60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=121897869]
+position = Vector2(-1241, 1)
+shape = SubResource("RectangleShape2D_v0l8b")
+
+[node name="Platform2" type="Sprite2D" parent="StaticBody2D" unique_id=1744751093]
+position = Vector2(-260.00037, -724.99994)
+rotation = -1.5908741
+scale = Vector2(1.7421622, 1.3201987)
+skew = -0.005214691
+texture = ExtResource("4_0ha60")
+
+[node name="Platform3" type="Sprite2D" parent="StaticBody2D" unique_id=1529405458]
+position = Vector2(-2302, -235)
+rotation = 1.5830536
+scale = Vector2(1.3200425, 1.319976)
+skew = -0.0052223206
+texture = ExtResource("4_0ha60")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=2045855235]
+position = Vector2(-2314.0005, -783.00006)
+rotation = 1.5850079
+shape = SubResource("RectangleShape2D_v0l8b")
+
+[node name="Player" parent="." unique_id=929837633 instance=ExtResource("1_itxqv")]
+position = Vector2(-720, 441)
+
+[node name="The Evener" parent="." unique_id=1787358943 instance=ExtResource("4_brvut")]
+position = Vector2(-1118, 460)

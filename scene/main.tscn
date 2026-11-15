@@ -9,15 +9,17 @@
 size = Vector2(2402, 278)
 
 [node name="Scene1" type="Node2D" unique_id=1865861714]
+position = Vector2(-310, -304)
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=878539570]
 scale = Vector2(0.5141124, 0.61483514)
 scroll_offset = Vector2(0, 411)
-repeat_size = Vector2(2880, 0)
+repeat_size = Vector2(6000, 0)
 autoscroll = Vector2(50, 0)
 
 [node name="Ta" type="Sprite2D" parent="Parallax2D" unique_id=1884903629]
 position = Vector2(883.0754, 0)
+scale = Vector2(2.0892549, 1)
 texture = ExtResource("1_brvut")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=556491267]
@@ -62,4 +64,4 @@ shape = SubResource("RectangleShape2D_v0l8b")
 position = Vector2(-720, 441)
 
 [node name="The Evener" parent="." unique_id=1787358943 instance=ExtResource("4_brvut")]
-position = Vector2(-1449, 441)
+position = Vector2(-1118, 460)

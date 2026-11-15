@@ -58,9 +58,10 @@ func ow(di, sort, dmg):
 	
 
 func _ready():
+	canim = $Animo/AnimatedSprite2D
 	if Globali.selected_char_id == 0:
 		canim = $Animo/AnimatedSprite2D
-	else:
+	elif Globali.selected_char_id == 1:
 		canim = $Animo/AnimatedSprite2D2
 	canim.visible = true;
 	$SpurtA/AnimatedSprite2D.hide();
@@ -111,6 +112,7 @@ func _playermov(delta):
 		$AtkCollisionBox.position.y = 0
 		
 	if not dizz:
+		canim.self_modulate = Color(1, 1, 1);
 		match anim:
 			
 			AnimStates.IDLE:
@@ -151,6 +153,7 @@ func _playermov(delta):
 						)
 	else:
 		canim.play("dizzy")
+		canim.self_modulate = Color(0, 1, 0);
 
 		
 	if ghit:

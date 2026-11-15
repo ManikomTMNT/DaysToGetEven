@@ -5,7 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const ENEMSPD = 100
 
-var hp = 2000;
+var hp = 8000;
 var gothit = false;
 @export var isjmp = false;
 
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	if hp < 1:
-		queue_free()
+		get_tree().change_scene_to_file("res://scene/Win.tscn");
 		
 	var player = get_tree().get_first_node_in_group("Player")
 	

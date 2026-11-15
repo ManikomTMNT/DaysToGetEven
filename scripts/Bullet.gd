@@ -13,5 +13,6 @@ func _physics_process(delta: float) -> void:
 			body.ow(sign(0), "firebull",150)
 			queue_free()
 
-	
-	
+
+func _on_timer_timeout() -> void:
+	queue_free()

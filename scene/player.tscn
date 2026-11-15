@@ -259,10 +259,6 @@ region = Rect2(2560, 0, 256, 128)
 atlas = ExtResource("5_s4jxa")
 region = Rect2(2816, 0, 256, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pk8el"]
-atlas = ExtResource("5_s4jxa")
-region = Rect2(1792, 0, 256, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3vgh4"]
 atlas = ExtResource("5_s4jxa")
 region = Rect2(0, 0, 256, 128)
@@ -270,6 +266,10 @@ region = Rect2(0, 0, 256, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3knh"]
 atlas = ExtResource("5_s4jxa")
 region = Rect2(256, 0, 256, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk8el"]
+atlas = ExtResource("5_s4jxa")
+region = Rect2(1792, 0, 256, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n3008"]
 atlas = ExtResource("5_s4jxa")
@@ -312,6 +312,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3vgh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3knh")
+}],
+"loop": 1,
+"name": &"dizzy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ct4mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iuf2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk4ol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrjdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4reak")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt23p")
+}],
+"loop": 0,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pk8el")
 }],
 "loop": 1,
@@ -335,6 +369,28 @@ animations = [{
 }],
 "loop": 1,
 "name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vgh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3knh")
+}],
+"loop": 0,
+"name": &"punched",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vgh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3knh")
+}],
+"loop": 0,
+"name": &"slashed",
 "speed": 5.0
 }, {
 "frames": [{
@@ -401,13 +457,14 @@ one_shot = true
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=476533839]
-limit_enabled = false
+offset = Vector2(0, 100)
+limit_left = -10000212
 limit_top = -360
 limit_bottom = 360
 position_smoothing_enabled = true
 
 [node name="DashTimer" type="Timer" parent="." unique_id=203384387]
-wait_time = 0.2
+wait_time = 0.8
 one_shot = true
 
 [node name="HPBar" type="ProgressBar" parent="." unique_id=1840306693]
@@ -429,17 +486,14 @@ z_index = 2
 position = Vector2(1.9073486e-06, 2.3841858e-07)
 scale = Vector2(0.77, 0.77)
 sprite_frames = SubResource("SpriteFrames_qdfsg")
-animation = &"attack"
-frame = 2
-frame_progress = 1.0
+animation = &"walk"
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Animo" unique_id=2127076357]
 visible = false
 position = Vector2(50, -11)
 scale = Vector2(0.8972304, 0.8972304)
 sprite_frames = SubResource("SpriteFrames_ct4mp")
-animation = &"attack"
-frame_progress = 0.91975033
+animation = &"dizzy"
 
 [node name="ExplosionArea" type="Area2D" parent="." unique_id=1737228890]
 position = Vector2(33, 8)

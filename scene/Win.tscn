@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://2uhvnk6hhwko"]
+
+[ext_resource type="Script" uid="uid://4ikgw57h21e5" path="res://scripts/gameover.gd" id="1_gp1nq"]
+[ext_resource type="Texture2D" uid="uid://xkpquiyw7fu8" path="res://sprites/ta.png" id="2_2hvn6"]
+[ext_resource type="AudioStream" uid="uid://bqeokl318ndag" path="res://music/Title Screener.wav" id="3_roj60"]
+[ext_resource type="PackedScene" uid="uid://crixx7rt7y8wy" path="res://scene/Fade.tscn" id="4_po1oy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7gfx"]
+font_size = 121
+
+[node name="GameOver" type="Control" unique_id=332482430]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gp1nq")
+
+[node name="Ooo" type="Sprite2D" parent="." unique_id=986552308]
+position = Vector2(552.75, 417.875)
+scale = Vector2(2.406829, 2.250461)
+texture = ExtResource("2_2hvn6")
+
+[node name="Label" type="Label" parent="Ooo" unique_id=134983562]
+offset_left = -72.60591
+offset_top = -115.47633
+offset_right = 173.39409
+offset_bottom = 50.523666
+scale = Vector2(0.59595084, 0.59595084)
+text = "WIN"
+label_settings = SubResource("LabelSettings_u7gfx")
+
+[node name="Button" type="Button" parent="." unique_id=936271570]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 447.0
+offset_right = 664.0
+offset_bottom = 514.0
+text = "Back to Title"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1531178263]
+stream = ExtResource("3_roj60")
+autoplay = true
+
+[node name="Fade" parent="." unique_id=36485381 instance=ExtResource("4_po1oy")]
+visible = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
